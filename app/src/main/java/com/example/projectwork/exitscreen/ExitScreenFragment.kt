@@ -34,7 +34,7 @@ class ExitScreenFragment : Fragment() {
         rightTool.setOnClickListener { System.exit((-1)) }
         leftTool.setOnClickListener { view?.let { findNavController().navigate(R.id.action_exitScreenFragment_to_menuFragment) } }
 
-        val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
             view?.let { findNavController().navigate(R.id.action_exitScreenFragment_to_menuFragment) }
         }
     }

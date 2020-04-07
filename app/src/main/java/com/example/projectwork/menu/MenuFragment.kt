@@ -41,7 +41,7 @@ class MenuFragment : Fragment() {
             url -> Picasso.get().load(url).into(userPhoto)
         }
         */
-        val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
             view?.let { //findNavController().navigate(R.id.action_menuFragment_to_exitScreenFragment)
                 System.exit((-1))
             }

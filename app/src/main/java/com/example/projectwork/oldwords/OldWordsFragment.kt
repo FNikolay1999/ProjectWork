@@ -31,7 +31,9 @@ class OldWordsFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         checkButton.setOnClickListener { view?.let { findNavController().navigate(R.id.action_oldWordsFragment_to_menuFragment) } }
 
-        val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
+
+
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
             view?.let { findNavController().navigate(R.id.action_oldWordsFragment_to_menuFragment) }
         }
     }

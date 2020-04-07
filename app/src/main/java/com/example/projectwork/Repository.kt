@@ -19,6 +19,7 @@ class Repository(val userPreferences: UserPreferences) {
         .newBuilder()
         .addInterceptor(HttpLoggingInterceptor())
         .build()
+
     /*
     private var api: AnimeApi = Retrofit.Builder()
         .baseUrl(BASE_URL)
