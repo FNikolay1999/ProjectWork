@@ -9,10 +9,8 @@ import com.example.projectwork.App
 import com.example.projectwork.Repository
 import com.example.projectwork.database.PolyglotDatabaseDao
 import kotlinx.coroutines.*
-
-class MenuViewModel(
-    val database: PolyglotDatabaseDao,
-    app : Application) : AndroidViewModel(app) {
+//убрал передачу dao через конструктор, чтобы не создавать Factory, потому что это геморой
+class MenuViewModel(app : Application) : AndroidViewModel(app) {
 
 //    val repository = (app as App).repository
 //    val userName : MutableLiveData<String> = MutableLiveData()
@@ -20,6 +18,8 @@ class MenuViewModel(
 //    val averageMistakes : MutableLiveData<Float> = MutableLiveData()
 //    val userPhoto : MutableLiveData<String> = MutableLiveData()
 
+    //предпочтительно вот так получать dao
+    private val database : PolyglotDatabaseDao = (app as App).database.polyglotDatabaseDao
     private var viewModelJob = Job()
 
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)

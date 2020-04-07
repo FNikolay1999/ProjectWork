@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.example.projectwork.R
+import com.example.projectwork.databinding.MenuFragmentBinding
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.menu_fragment.*
 
@@ -21,21 +23,32 @@ class MenuFragment : Fragment() {
     }
 
     private val viewModel: MenuViewModel by viewModels()
+    //Обьявления обьекта для binding
+    private lateinit var binding : MenuFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.menu_fragment, container, false)
+        //вот так он создается. Именно в этом методе!!!
+        binding = MenuFragmentBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        newWords.setOnClickListener { view?.let { findNavController().navigate(R.id.action_menuFragment_to_newWordsFragment) } }
-        oldWords.setOnClickListener { view?.let { findNavController().navigate(R.id.action_menuFragment_to_oldWordsFragment) } }
-        stats.setOnClickListener { view?.let { findNavController().navigate(R.id.action_menuFragment_to_statsFragment) } }
-        settings.setOnClickListener { view?.let { findNavController().navigate(R.id.action_menuFragment_to_settingsFragment) } }
+        //а именно в этом методе в него передаются параметры
+        binding.apply {
+            //передаем viewModel, чтобы из нее бралось нужное поле oldWordsButtonsVisible
+            menuViewModel = viewModel
+            //также передаем lifecycleOwner, потому что, чтобы у тебя данные сами обновлялись, а не один раз и все, то liveDat'е нужен lifecycleOwner
+            //лучше не забывай его передавать, если у тебя во viewModel liveData, потому что этот баг искать долго
+            binding.lifecycleOwner = viewLifecycleOwner
+            newWords.setOnClickListener { view?.let { findNavController().navigate(R.id.action_menuFragment_to_newWordsFragment) } }
+            oldWords.setOnClickListener { view?.let { findNavController().navigate(R.id.action_menuFragment_to_oldWordsFragment) } }
+            stats.setOnClickListener { view?.let { findNavController().navigate(R.id.action_menuFragment_to_statsFragment) } }
+            settings.setOnClickListener { view?.let { findNavController().navigate(R.id.action_menuFragment_to_settingsFragment) } }
+        }
         /*   Photography
         viewModel.userPhoto.observe(this){
             url -> Picasso.get().load(url).into(userPhoto)

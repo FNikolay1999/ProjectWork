@@ -7,6 +7,7 @@
         <variable
             name="menuViewModel"
             type="com.example.projectwork.menu.MenuViewModel" />
+        <import type="android.view.View"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -58,7 +59,7 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/newWords"
-                android:enabled="@{menuViewModel.oldWordsButtonVisible}"/>
+                android:visibility="@{menuViewModel.oldWordsButtonVisible ? View.VISIBLE : View.GONE}"/>
 
             <Button
                 android:id="@+id/stats"
