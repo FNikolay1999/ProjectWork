@@ -1,0 +1,16 @@
+package com.example.projectwork
+
+import android.app.Application
+
+class App : Application() {
+
+
+    lateinit var userPreferences: UserPreferences
+    lateinit var repository: Repository
+
+    override fun onCreate() {
+        super.onCreate()
+        userPreferences = UserPreferences(applicationContext)
+        repository = Repository(userPreferences)
+    }
+}

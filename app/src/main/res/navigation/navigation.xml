@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/menuFragment">
+
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.example.projectwork.menu.MenuFragment"
+        android:label="menu_fragment"
+        tools:layout="@layout/menu_fragment" >
+        <action
+            android:id="@+id/action_menuFragment_to_newWordsFragment"
+            app:destination="@id/newWordsFragment"
+            app:enterAnim="@anim/fragment_open_enter" />
+        <action
+            android:id="@+id/action_menuFragment_to_oldWordsFragment"
+            app:destination="@id/oldWordsFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_statsFragment"
+            app:destination="@id/statsFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_exitScreenFragment"
+            app:destination="@id/exitScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newWordsFragment"
+        android:name="com.example.projectwork.newwords.NewWordsFragment"
+        android:label="new_words_fragment"
+        tools:layout="@layout/new_words_fragment" >
+        <action
+            android:id="@+id/action_newWordsFragment_to_menuFragment"
+            app:destination="@+id/menuFragment"
+            app:enterAnim="@anim/fragment_close_enter" />
+    </fragment>
+    <fragment
+        android:id="@+id/oldWordsFragment"
+        android:name="com.example.projectwork.oldwords.OldWordsFragment"
+        android:label="old_words_fragment"
+        tools:layout="@layout/old_words_fragment" >
+        <action
+            android:id="@+id/action_oldWordsFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.projectwork.settings.SettingsFragment"
+        android:label="settings_fragment"
+        tools:layout="@layout/settings_fragment" >
+        <action
+            android:id="@+id/action_settingsFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/statsFragment"
+        android:name="com.example.projectwork.stats.StatsFragment"
+        android:label="stats_fragment"
+        tools:layout="@layout/stats_fragment" >
+        <action
+            android:id="@+id/action_statsFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/exitScreenFragment"
+        android:name="com.example.projectwork.exitscreen.ExitScreenFragment"
+        android:label="exit_screen_fragment"
+        tools:layout="@layout/exit_screen_fragment" >
+        <action
+            android:id="@+id/action_exitScreenFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
+</navigation>
