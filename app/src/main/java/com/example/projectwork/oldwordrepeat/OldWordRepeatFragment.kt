@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 
 import com.example.projectwork.R
@@ -17,6 +18,7 @@ class OldWordRepeatFragment : Fragment() {
 
     companion object {
         fun newInstance() = OldWordRepeatFragment()
+        const val WORD_ID = "word_id"
     }
 
     private val viewModel: OldWordRepeatViewModel by viewModels()
@@ -43,6 +45,12 @@ class OldWordRepeatFragment : Fragment() {
 
         requireActivity().onBackPressedDispatcher.addCallback(this) {
             view?.let { findNavController().navigate(R.id.action_oldWordRepeatFragment_to_oldWordsMenuFragment) }
+        }
+        lifecycleScope.launchWhenStarted {
+            val wordId = arguments?.getLong(WORD_ID)
+            wordId?.let {
+                viewModel.getWord(it)
+            }
         }
     }
 
