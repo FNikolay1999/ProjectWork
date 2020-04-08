@@ -11,13 +11,13 @@ import kotlinx.coroutines.Job
 import java.util.logging.Logger
 import kotlin.jvm.javaClass
 
-class OldWordRepeatViewModel(app : Application) : AndroidViewModel(app) {
+class OldWordRepeatViewModel(application: Application) : AndroidViewModel(application) {
 
     private var viewModelJob = Job()
 
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    var myApp = App()
+    var myApp = application as App
 
     val WordString = myApp.dictWord.word
     val TranscryptionString = myApp.dictWord.transcrypt
