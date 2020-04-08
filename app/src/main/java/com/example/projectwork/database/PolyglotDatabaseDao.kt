@@ -19,6 +19,7 @@ package com.example.projectwork.database
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.Query
 import androidx.room.Update
 
 @Dao
@@ -30,18 +31,21 @@ interface PolyglotDatabaseDao {
     @Update
     fun update(word: PolyglotData)
 
-    @androidx.room.Query("SELECT * FROM studied_words WHERE language_id = :langKey AND word_id = :wordKey")
+    @Query("SELECT * FROM studied_words WHERE uniqueId = :uniqueId")
+    suspend fun getWord(uniqueId : Long) : PolyglotData
+
+    @Query("SELECT * FROM studied_words WHERE language_id = :langKey AND word_id = :wordKey")
     fun getWord(langKey: Long, wordKey: Long): PolyglotData?
 
-    @androidx.room.Query("SELECT * FROM studied_words WHERE language_id = :langKey AND is_studied = 1 ORDER BY word_id ASC LIMIT 1")
+    @Query("SELECT * FROM studied_words WHERE language_id = :langKey AND is_studied = 1 ORDER BY word_id ASC LIMIT 1")
     fun getFirstWord(langKey: Long): PolyglotData?
 
-    @androidx.room.Query("SELECT * FROM studied_words WHERE language_id = :langKey")
+    @Query("SELECT * FROM studied_words WHERE language_id = :langKey")
     fun getWords(langKey: Long): LiveData<List<PolyglotData>>
 
-    @androidx.room.Query("SELECT * FROM studied_words WHERE language_id = :langKey AND is_studied = 1")
+    @Query("SELECT * FROM studied_words WHERE language_id = :langKey AND is_studied = 1")
     fun getStudiedWords(langKey: Long): LiveData<List<PolyglotData>>
 
-    @androidx.room.Query("SELECT COUNT(DISTINCT language_id) FROM studied_words")
+    @Query("SELECT COUNT(DISTINCT language_id) FROM studied_words")
     fun getLangCount(): Int
 }

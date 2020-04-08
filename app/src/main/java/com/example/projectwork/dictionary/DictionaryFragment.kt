@@ -8,13 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.addCallback
+import androidx.core.os.bundleOf
 import androidx.lifecycle.observe
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.projectwork.R
 import com.example.projectwork.base_list.ListAdapter
 import com.example.projectwork.database.PolyglotData
+import com.example.projectwork.oldwordrepeat.OldWordRepeatFragment
 import kotlinx.android.synthetic.main.dictionary_fragment.*
 import kotlinx.coroutines.withContext
 
@@ -27,7 +30,8 @@ class DictionaryFragment : Fragment() {
     private lateinit var viewModel: DictionaryViewModel
     private val adapter : ListAdapter<PolyglotData> = DictionaryAdapter{
         //обработку нажатий на элемент списка лучше делать из фрагмента
-        Toast.makeText(context, "Вы нажали на ${it.originalWord}", Toast.LENGTH_SHORT).show()
+        val bundle = bundleOf(OldWordRepeatFragment.WORD_ID to it.uniqueId)
+        view?.findNavController()?.navigate(R.id.action_dictionaryFragment_to_oldWordRepeatFragment, bundle)
     }
 
     override fun onCreateView(

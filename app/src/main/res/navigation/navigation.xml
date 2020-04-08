@@ -117,5 +117,8 @@
         <action
             android:id="@+id/action_oldWordRepeatFragment_to_oldWordsMenuFragment"
             app:destination="@id/oldWordsMenuFragment" />
+        <argument
+            android:name="word_id"
+            app:argType="long" />
     </fragment>
 </navigation>
