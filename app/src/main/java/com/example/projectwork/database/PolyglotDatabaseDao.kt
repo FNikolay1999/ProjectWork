@@ -19,6 +19,7 @@ package com.example.projectwork.database
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.Query
 import androidx.room.Update
 
 @Dao
@@ -44,4 +45,7 @@ interface PolyglotDatabaseDao {
 
     @androidx.room.Query("SELECT COUNT(DISTINCT language_id) FROM studied_words")
     fun getLangCount(): Int
+
+    @Query("SELECT * FROM studied_words WHERE uniqueId = :Key")
+    fun getKey(Key: Long): PolyglotData?
 }
