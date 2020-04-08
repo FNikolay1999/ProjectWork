@@ -29,12 +29,12 @@ class OldWordsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        checkButton.setOnClickListener { view?.let { findNavController().navigate(R.id.action_oldWordsFragment_to_menuFragment) } }
+        checkButton.setOnClickListener { view?.let { findNavController().navigate(R.id.action_oldWordsFragment_to_oldWordsMenuFragment) } }
 
 
 
         requireActivity().onBackPressedDispatcher.addCallback(this) {
-            view?.let { findNavController().navigate(R.id.action_oldWordsFragment_to_menuFragment) }
+            view?.let { findNavController().navigate(R.id.action_oldWordsFragment_to_oldWordsMenuFragment) }
         }
     }
 

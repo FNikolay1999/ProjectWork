@@ -15,9 +15,6 @@
             app:destination="@id/newWordsFragment"
             app:enterAnim="@anim/fragment_open_enter" />
         <action
-            android:id="@+id/action_menuFragment_to_oldWordsFragment"
-            app:destination="@id/oldWordsFragment" />
-        <action
             android:id="@+id/action_menuFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
         <action
@@ -26,6 +23,9 @@
         <action
             android:id="@+id/action_menuFragment_to_exitScreenFragment"
             app:destination="@id/exitScreenFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_oldWordsMenuFragment"
+            app:destination="@id/oldWordsMenuFragment" />
     </fragment>
     <fragment
         android:id="@+id/newWordsFragment"
@@ -43,8 +43,8 @@
         android:label="old_words_fragment"
         tools:layout="@layout/old_words_fragment" >
         <action
-            android:id="@+id/action_oldWordsFragment_to_menuFragment"
-            app:destination="@id/menuFragment" />
+            android:id="@+id/action_oldWordsFragment_to_oldWordsMenuFragment"
+            app:destination="@id/oldWordsMenuFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -72,5 +72,50 @@
         <action
             android:id="@+id/action_exitScreenFragment_to_menuFragment"
             app:destination="@id/menuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dictionaryFragment"
+        android:name="com.example.projectwork.dictionary.DictionaryFragment"
+        android:label="dictionary_fragment"
+        tools:layout="@layout/dictionary_fragment" >
+        <action
+            android:id="@+id/action_dictionaryFragment_to_oldWordsMenuFragment"
+            app:destination="@id/oldWordsMenuFragment" />
+        <action
+            android:id="@+id/action_dictionaryFragment_to_oldWordRepeatFragment"
+            app:destination="@id/oldWordRepeatFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/oldWordsMenuFragment"
+        android:name="com.example.projectwork.oldwordsmenu.OldWordsMenuFragment"
+        android:label="old_words_menu_fragment"
+        tools:layout="@layout/old_words_menu_fragment" >
+        <action
+            android:id="@+id/action_oldWordsMenuFragment_to_dictionaryFragment"
+            app:destination="@id/dictionaryFragment" />
+        <action
+            android:id="@+id/action_oldWordsMenuFragment_to_oldWordsFragment"
+            app:destination="@id/oldWordsFragment" />
+        <action
+            android:id="@+id/action_oldWordsMenuFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+        <action
+            android:id="@+id/action_oldWordsMenuFragment_to_oldWordRepeatFragment"
+            app:destination="@id/oldWordRepeatFragment" />
+        <action
+            android:id="@+id/action_oldWordsMenuFragment_to_oldWordRepeatFragment2"
+            app:destination="@id/oldWordRepeatFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/oldWordRepeatFragment"
+        android:name="com.example.projectwork.oldwordrepeat.OldWordRepeatFragment"
+        android:label="old_word_repeat_fragment"
+        tools:layout="@layout/old_word_repeat_fragment" >
+        <action
+            android:id="@+id/action_oldWordRepeatFragment_to_dictionaryFragment"
+            app:destination="@id/dictionaryFragment" />
+        <action
+            android:id="@+id/action_oldWordRepeatFragment_to_oldWordsMenuFragment"
+            app:destination="@id/oldWordsMenuFragment" />
     </fragment>
 </navigation>

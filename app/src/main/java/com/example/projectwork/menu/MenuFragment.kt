@@ -45,7 +45,7 @@ class MenuFragment : Fragment() {
             //лучше не забывай его передавать, если у тебя во viewModel liveData, потому что этот баг искать долго
             binding.lifecycleOwner = viewLifecycleOwner
             newWords.setOnClickListener { view?.let { findNavController().navigate(R.id.action_menuFragment_to_newWordsFragment) } }
-            oldWords.setOnClickListener { view?.let { findNavController().navigate(R.id.action_menuFragment_to_oldWordsFragment) } }
+            oldWords.setOnClickListener { view?.let { findNavController().navigate(R.id.action_menuFragment_to_oldWordsMenuFragment) } }
             stats.setOnClickListener { view?.let { findNavController().navigate(R.id.action_menuFragment_to_statsFragment) } }
             settings.setOnClickListener { view?.let { findNavController().navigate(R.id.action_menuFragment_to_settingsFragment) } }
         }
