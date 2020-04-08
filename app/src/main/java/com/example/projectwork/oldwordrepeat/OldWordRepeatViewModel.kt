@@ -1,6 +1,8 @@
 package com.example.projectwork.oldwordrepeat
 
+import android.app.Application
 import android.util.Log
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import com.example.projectwork.App
 import kotlinx.coroutines.CoroutineScope
@@ -9,13 +11,13 @@ import kotlinx.coroutines.Job
 import java.util.logging.Logger
 import kotlin.jvm.javaClass
 
-class OldWordRepeatViewModel : ViewModel() {
+class OldWordRepeatViewModel(application: Application) : AndroidViewModel(application) {
 
     private var viewModelJob = Job()
 
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    var myApp = App()
+    var myApp = application as App
 
     val WordString = myApp.dictWord.word
 

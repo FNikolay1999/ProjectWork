@@ -10,6 +10,7 @@ import androidx.activity.addCallback
 import androidx.navigation.fragment.findNavController
 
 import com.example.projectwork.R
+import com.example.projectwork.databinding.OldWordRepeatFragmentBinding
 
 class OldWordRepeatFragment : Fragment() {
 
@@ -18,7 +19,6 @@ class OldWordRepeatFragment : Fragment() {
     }
 
     private lateinit var viewModel: OldWordRepeatViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,7 +29,6 @@ class OldWordRepeatFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(OldWordRepeatViewModel::class.java)
-
         requireActivity().onBackPressedDispatcher.addCallback(this) {
             view?.let { findNavController().navigate(R.id.action_oldWordRepeatFragment_to_oldWordsMenuFragment) }
         }
