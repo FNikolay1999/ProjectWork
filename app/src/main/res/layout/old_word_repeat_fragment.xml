@@ -62,7 +62,7 @@
                             android:id="@+id/wordText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@{oldWordRepeatViewModel.wordText}"
+                            android:text="@{oldWordRepeatViewModel.WordString}"
                             android:textAlignment="center"
                             android:textAllCaps="true"
                             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
@@ -71,7 +71,7 @@
                             android:id="@+id/transcryptionText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Transcryption"
+                            android:text="@{oldWordRepeatViewModel.TranscryptionString}"
                             android:textAlignment="center"
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
@@ -79,7 +79,7 @@
                             android:id="@+id/translationText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Translations"
+                            android:text="@{oldWordRepeatViewModel.TranslationString}"
                             android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
                     </LinearLayout>

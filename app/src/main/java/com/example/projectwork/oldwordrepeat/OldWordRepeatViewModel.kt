@@ -1,6 +1,8 @@
 package com.example.projectwork.oldwordrepeat
 
+import android.app.Application
 import android.util.Log
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import com.example.projectwork.App
 import kotlinx.coroutines.CoroutineScope
@@ -9,7 +11,7 @@ import kotlinx.coroutines.Job
 import java.util.logging.Logger
 import kotlin.jvm.javaClass
 
-class OldWordRepeatViewModel : ViewModel() {
+class OldWordRepeatViewModel(app : Application) : AndroidViewModel(app) {
 
     private var viewModelJob = Job()
 
@@ -18,16 +20,16 @@ class OldWordRepeatViewModel : ViewModel() {
     var myApp = App()
 
     val WordString = myApp.dictWord.word
+    val TranscryptionString = myApp.dictWord.transcrypt
+    val TranslationString = myApp.dictWord.translation
 
-    val wordText = "Word"
-
-    fun getWord(): String {
-//        val Log = Logger.getLogger(OldWordRepeatViewModel::class.java.name)
-        Log.d("OLDWORD", WordString)
-        return WordString
-    }
 
 //    val WordString: String = myApp.dictWord.word
 //    val TranscryptionString: String = mApp.dictWord.transcrypt
 //    val translationString: String = mApp.dictWord.translation
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
+    }
 }

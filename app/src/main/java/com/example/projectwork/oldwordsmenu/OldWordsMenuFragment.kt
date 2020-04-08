@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 
 import com.example.projectwork.R
@@ -18,7 +19,7 @@ class OldWordsMenuFragment : Fragment() {
         fun newInstance() = OldWordsMenuFragment()
     }
 
-    private lateinit var viewModel: OldWordsMenuViewModel
+    private val viewModel: OldWordsMenuViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,13 +30,12 @@ class OldWordsMenuFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(OldWordsMenuViewModel::class.java)
 
         dictionaryButton.setOnClickListener { view?.let { findNavController().navigate(R.id.action_oldWordsMenuFragment_to_oldWordRepeatFragment) } }
         oldWordsButton.setOnClickListener { view?.let { findNavController().navigate(R.id.action_oldWordsMenuFragment_to_oldWordsFragment) } }
 
         requireActivity().onBackPressedDispatcher.addCallback(this) {
-            view?.let { findNavController().navigate(R.id.action_dictionaryFragment_to_oldWordsMenuFragment) }
+            view?.let { findNavController().navigate(R.id.action_oldWordsMenuFragment_to_menuFragment) }
         }
     }
 

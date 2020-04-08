@@ -9,6 +9,8 @@ import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.projectwork.R
+import com.example.projectwork.databinding.NewWordsFragmentBinding
+
 import kotlinx.android.synthetic.main.new_words_fragment.*
 
 
@@ -20,16 +22,27 @@ class NewWordsFragment : Fragment() {
 
     private val viewModel: NewWordsViewModel by viewModels()
 
+    private lateinit var binding : NewWordsFragmentBinding
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.new_words_fragment, container, false)
+        binding = NewWordsFragmentBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        leftTool.setOnClickListener { view?.let { findNavController().navigate(R.id.action_newWordsFragment_to_menuFragment) } }
+
+        binding.apply {
+
+            newWordsViewModel = viewModel
+            binding.lifecycleOwner = lifecycleOwner
+
+            leftTool.setOnClickListener { view?.let { findNavController().navigate(R.id.action_newWordsFragment_to_menuFragment) } }
+        }
 
         requireActivity().onBackPressedDispatcher.addCallback(this) {
             view?.let { findNavController().navigate(R.id.action_newWordsFragment_to_menuFragment) }
