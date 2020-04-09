@@ -26,7 +26,7 @@ class AppSettingsAdapter(private val onClickAction : (LanguageData) -> Unit) : L
         //Передается конструктор класса, generic параметры это классы Binding и ViewHolder
         object : SimpleCreator<AppSettingsViewHolder>(::AppSettingsViewHolder){
             override val holderLayout: Int
-                get() = R.layout.item_without_binding
+                get() = R.layout.app_settings_item_with_binding
         }
 
     /**
@@ -51,7 +51,8 @@ class AppSettingsAdapter(private val onClickAction : (LanguageData) -> Unit) : L
         override fun bind(item: LanguageData) {
             view.apply {
                 language_tv.text = item.language
-                button1.setOnClickListener {
+                button.text = item.language
+                button.setOnClickListener {
                     onClickAction(item)
                 }
             }

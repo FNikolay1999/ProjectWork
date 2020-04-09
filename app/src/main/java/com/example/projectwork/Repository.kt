@@ -1,5 +1,6 @@
 package com.example.projectwork
 
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
@@ -9,7 +10,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 class Repository(val userPreferences: UserPreferences) {
 
-    private val BASE_URL = "http://mmcspolyglot.mcdir.ru/dictionary.php"
+    private val BASE_URL = "http://mmcspolyglot.mcdir.ru/"
 
     private val moshi = Moshi.Builder()
         .add(KotlinJsonAdapterFactory())
@@ -19,6 +20,13 @@ class Repository(val userPreferences: UserPreferences) {
         .newBuilder()
         .addInterceptor(HttpLoggingInterceptor())
         .build()
+
+    private val retrofit = Retrofit.Builder()
+        .addConverterFactory(MoshiConverterFactory.create(moshi))
+        .addCallAdapterFactory(CoroutineCallAdapterFactory())
+        .baseUrl(BASE_URL)
+        .build()
+
 
     /*
     private var api: AnimeApi = Retrofit.Builder()

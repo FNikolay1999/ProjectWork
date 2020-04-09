@@ -25,6 +25,9 @@ class App : Application() {
         repository = Repository(userPreferences)
         //добавил database в App
         database = PolyglotDatabase.getInstance(this)
-        allLanguages = listOf(LanguageData(1, "lang1", 0), LanguageData(2, "lang2", 0))//запрос
+        //TODO Запрос на получение списка языков и сравнение с текущей базой
+        allLanguages = listOf(LanguageData(1, "lang1", 0), LanguageData(2, "lang2", 0))
+
+
     }
 }

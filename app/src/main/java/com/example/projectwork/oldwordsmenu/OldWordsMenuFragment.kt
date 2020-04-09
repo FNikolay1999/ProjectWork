@@ -31,7 +31,7 @@ class OldWordsMenuFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        dictionaryButton.setOnClickListener { view?.let { findNavController().navigate(R.id.action_oldWordsMenuFragment_to_oldWordRepeatFragment) } }
+        dictionaryButton.setOnClickListener { view?.let { findNavController().navigate(R.id.action_oldWordsMenuFragment_to_dictionaryFragment) } }
         oldWordsButton.setOnClickListener { view?.let { findNavController().navigate(R.id.action_oldWordsMenuFragment_to_oldWordsFragment) } }
 
         requireActivity().onBackPressedDispatcher.addCallback(this) {

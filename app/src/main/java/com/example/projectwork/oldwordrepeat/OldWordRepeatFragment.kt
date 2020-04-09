@@ -44,7 +44,7 @@ class OldWordRepeatFragment : Fragment() {
         }
 
         requireActivity().onBackPressedDispatcher.addCallback(this) {
-            view?.let { findNavController().navigate(R.id.action_oldWordRepeatFragment_to_oldWordsMenuFragment) }
+            view?.let { findNavController().navigate(R.id.action_oldWordRepeatFragment_to_dictionaryFragment) }
         }
         lifecycleScope.launchWhenStarted {
             val wordId = arguments?.getLong(WORD_ID)
