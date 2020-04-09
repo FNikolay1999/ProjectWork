@@ -1,17 +1,18 @@
 package com.example.projectwork
 
 import android.app.Application
-import android.content.Context
-import androidx.lifecycle.LiveData
 import com.example.projectwork.database.PolyglotDatabase
+import com.example.projectwork.network.PolyglotService
 import com.example.projectwork.settings.LanguageData
-import okhttp3.internal.Internal.instance
 
 class App : Application() {
 
     lateinit var userPreferences: UserPreferences
     lateinit var repository: Repository
     lateinit var database : PolyglotDatabase
+    val remoteService : PolyglotService by lazy {
+        PolyglotService()
+    }
 
     data class Word(var word : String, var transcrypt: String, var translation: String)
 

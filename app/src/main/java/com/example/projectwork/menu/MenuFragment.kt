@@ -1,6 +1,7 @@
 package com.example.projectwork.menu
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -54,6 +55,14 @@ class MenuFragment : Fragment() {
             url -> Picasso.get().load(url).into(userPhoto)
         }
         */
+
+        viewModel.languages.observe(viewLifecycleOwner){
+            Log.d("Menu", "List of languages = $it")
+        }
+        viewModel.word.observe(viewLifecycleOwner){
+            Log.d("Menu", "Word = $it")
+        }
+
         requireActivity().onBackPressedDispatcher.addCallback(this) {
             view?.let { //findNavController().navigate(R.id.action_menuFragment_to_exitScreenFragment)
                 System.exit((-1))
