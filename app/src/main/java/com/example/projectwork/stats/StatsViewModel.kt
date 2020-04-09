@@ -20,6 +20,7 @@ class StatsViewModel(app : Application) : AndroidViewModel(app){
     var mApp = app as App
     private var okWords = database.getStudiedWords(mApp.currentLanguage)
     private var allWords = database.getWords(mApp.currentLanguage)
+    private val allLangs = mApp.allLanguages
 
     val studiedWordsAmount: Int = okWords.value?.size ?: 0
     val wordsAmount: Int = allWords.value?.size ?: 0
@@ -27,5 +28,7 @@ class StatsViewModel(app : Application) : AndroidViewModel(app){
     val studiedWordsAmountString = "Изучено слов: " + studiedWordsAmount.toString()
     val wordsAmountString = "Всего слов: " + wordsAmount.toString()
     val wordsLeftString = "Осталось слов: " + wordsLeft.toString()
+
+    val getCurrentLanguage: String = "Текущий язык: " + allLangs[(mApp.currentLanguage - 1).toInt()].language
 
 }

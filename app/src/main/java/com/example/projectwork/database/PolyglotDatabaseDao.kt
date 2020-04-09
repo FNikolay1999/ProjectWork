@@ -46,6 +46,9 @@ interface PolyglotDatabaseDao {
     @Query("SELECT * FROM studied_words WHERE language_id = :langKey AND is_studied = 1")
     fun getStudiedWords(langKey: Long): LiveData<List<PolyglotData>>
 
+    @Query("SELECT * FROM studied_words WHERE language_id = :langKey AND is_studied = 0")
+    fun getNotStudiedWords(langKey: Long): LiveData<List<PolyglotData>>
+
     @Query("SELECT COUNT(DISTINCT language_id) FROM studied_words")
     fun getLangCount(): Int
 }

@@ -26,8 +26,13 @@ class MenuViewModel(app : Application) : AndroidViewModel(app) {
 
     var mApp = App()
     private var okWords = database.getStudiedWords(mApp.currentLanguage)
+    private var notOkWords = database.getNotStudiedWords(mApp.currentLanguage)
 
     val oldWordsButtonVisible = Transformations.map(okWords) {
+        it?.isNotEmpty()
+    }
+
+    val newWordsButtonVisible = Transformations.map(notOkWords) {
         it?.isNotEmpty()
     }
 //

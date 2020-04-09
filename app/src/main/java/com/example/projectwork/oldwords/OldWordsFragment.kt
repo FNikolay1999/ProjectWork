@@ -10,7 +10,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.projectwork.R
 import com.example.projectwork.databinding.OldWordsFragmentBinding
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.old_words_fragment.*
+import java.util.*
 
 
 class OldWordsFragment : Fragment() {
@@ -38,7 +41,11 @@ class OldWordsFragment : Fragment() {
 
             oldWordsViewModel = viewModel
             binding.lifecycleOwner = lifecycleOwner
-            checkButton.setOnClickListener { view?.let { findNavController().navigate(R.id.action_oldWordsFragment_to_oldWordsMenuFragment) } }
+            checkButton.setOnClickListener {
+                val answer = answer_text.text.toString().toLowerCase(Locale.ROOT).toRegex()
+
+
+            }
         }
 
         requireActivity().onBackPressedDispatcher.addCallback(this) {

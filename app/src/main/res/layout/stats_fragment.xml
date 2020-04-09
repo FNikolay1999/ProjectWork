@@ -22,7 +22,7 @@
                 android:id="@+id/languageText"
                 android:layout_width="347dp"
                 android:layout_height="wrap_content"
-                android:text="Язык:"
+                android:text="@{statsViewModel.getCurrentLanguage}"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:layout_constraintBottom_toTopOf="@+id/wordsAllTimeText"
