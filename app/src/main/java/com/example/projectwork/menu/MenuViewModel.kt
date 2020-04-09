@@ -21,8 +21,21 @@ class MenuViewModel(app : Application) : AndroidViewModel(app) {
     private val database : PolyglotDatabaseDao = myApp.database.polyglotDatabaseDao
     private val remoteService = myApp.remoteService
 
+    private var viewModelJob = Job()
+    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main )
+
+    init {
+        startLangs()
+    }
+
+    private fun startLangs() {
+        coroutineScope.launch {
+            myApp.getLangsResponse()
+        }
+    }
+
     private var okWords = database.getStudiedWords(myApp.currentLanguage)
-    private var notOkWords = database.getNotStudiedWords(mApp.currentLanguage)
+    private var notOkWords = database.getNotStudiedWords(myApp.currentLanguage)
 
     val oldWordsButtonVisible = Transformations.map(okWords) {
         it?.isNotEmpty()

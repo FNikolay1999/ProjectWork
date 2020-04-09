@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.projectwork.R
 import com.example.projectwork.databinding.NewWordsFragmentBinding
+import com.example.projectwork.network.bindImage
 
 import kotlinx.android.synthetic.main.new_words_fragment.*
 
@@ -36,10 +37,15 @@ class NewWordsFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+
+
         binding.apply {
 
             newWordsViewModel = viewModel
             binding.lifecycleOwner = lifecycleOwner
+
+            //bindImage(wordImage, newWordsViewModel.intWord?.imgSrcUrl)
+
 
             leftTool.setOnClickListener { view?.let { findNavController().navigate(R.id.action_newWordsFragment_to_menuFragment) } }
         }
