@@ -1,5 +1,6 @@
 package com.example.projectwork.settings
 
+import android.app.Application
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -21,7 +22,7 @@ class AppSettingsFragment : Fragment() {
         fun newInstance() = AppSettingsFragment()
     }
 
-    var myApp = requireActivity().application as App
+    lateinit var myApp: App
 
     private lateinit var viewModel: AppSettingsViewModel
     private val adapter : ListAdapter<LanguageData> = AppSettingsAdapter{
@@ -57,6 +58,8 @@ class AppSettingsFragment : Fragment() {
 //        viewModel.languages.observe(viewLifecycleOwner){
 //            adapter.setList(it)
 //        }
+
+        myApp = requireActivity().application as App
 
         adapter.setList(myApp.allLanguages)
 
