@@ -9,7 +9,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 class Repository(val userPreferences: UserPreferences) {
 
-    private val BASE_URL = "https://api.jikan.moe/v3/"
+    private val BASE_URL = "http://mmcspolyglot.mcdir.ru/dictionary.php"
 
     private val moshi = Moshi.Builder()
         .add(KotlinJsonAdapterFactory())

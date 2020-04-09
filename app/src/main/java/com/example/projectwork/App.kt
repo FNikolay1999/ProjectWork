@@ -2,7 +2,9 @@ package com.example.projectwork
 
 import android.app.Application
 import android.content.Context
+import androidx.lifecycle.LiveData
 import com.example.projectwork.database.PolyglotDatabase
+import com.example.projectwork.settings.LanguageData
 import okhttp3.internal.Internal.instance
 
 class App : Application() {
@@ -15,6 +17,7 @@ class App : Application() {
 
     var currentLanguage: Long = 1
     var dictWord = Word("unknown", "unknown", "unknown")
+    lateinit var allLanguages: List<LanguageData>
 
     override fun onCreate() {
         super.onCreate()
@@ -22,5 +25,6 @@ class App : Application() {
         repository = Repository(userPreferences)
         //добавил database в App
         database = PolyglotDatabase.getInstance(this)
+        allLanguages = listOf(LanguageData(1, "lang1", 0), LanguageData(2, "lang2", 0))//запрос
     }
 }

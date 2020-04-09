@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/dictionaryFragment">
+    app:startDestination="@id/menuFragment">
 
     <fragment
         android:id="@+id/menuFragment"
@@ -15,9 +15,6 @@
             app:destination="@id/newWordsFragment"
             app:enterAnim="@anim/fragment_open_enter" />
         <action
-            android:id="@+id/action_menuFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
-        <action
             android:id="@+id/action_menuFragment_to_statsFragment"
             app:destination="@id/statsFragment" />
         <action
@@ -26,6 +23,9 @@
         <action
             android:id="@+id/action_menuFragment_to_oldWordsMenuFragment"
             app:destination="@id/oldWordsMenuFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_appSettingsFragment"
+            app:destination="@id/appSettingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/newWordsFragment"
@@ -45,15 +45,6 @@
         <action
             android:id="@+id/action_oldWordsFragment_to_oldWordsMenuFragment"
             app:destination="@id/oldWordsMenuFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.example.projectwork.settings.SettingsFragment"
-        android:label="settings_fragment"
-        tools:layout="@layout/settings_fragment" >
-        <action
-            android:id="@+id/action_settingsFragment_to_menuFragment"
-            app:destination="@id/menuFragment" />
     </fragment>
     <fragment
         android:id="@+id/statsFragment"
@@ -120,5 +111,13 @@
         <argument
             android:name="word_id"
             app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/appSettingsFragment"
+        android:name="com.example.projectwork.dictionary.AppSettingsFragment"
+        android:label="AppSettingsFragment" >
+        <action
+            android:id="@+id/action_appSettingsFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
     </fragment>
 </navigation>

@@ -48,7 +48,4 @@ interface PolyglotDatabaseDao {
 
     @Query("SELECT COUNT(DISTINCT language_id) FROM studied_words")
     fun getLangCount(): Int
-
-    @Query("SELECT * FROM studied_words WHERE uniqueId = :Key")
-    fun getKey(Key: Long): PolyglotData?
 }

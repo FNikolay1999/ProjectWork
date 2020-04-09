@@ -47,7 +47,7 @@ class MenuFragment : Fragment() {
             newWords.setOnClickListener { view?.let { findNavController().navigate(R.id.action_menuFragment_to_newWordsFragment) } }
             oldWords.setOnClickListener { view?.let { findNavController().navigate(R.id.action_menuFragment_to_oldWordsMenuFragment) } }
             stats.setOnClickListener { view?.let { findNavController().navigate(R.id.action_menuFragment_to_statsFragment) } }
-            settings.setOnClickListener { view?.let { findNavController().navigate(R.id.action_menuFragment_to_settingsFragment) } }
+            settings.setOnClickListener { view?.let { findNavController().navigate(R.id.action_menuFragment_to_appSettingsFragment) } }
         }
         /*   Photography
         viewModel.userPhoto.observe(this){
