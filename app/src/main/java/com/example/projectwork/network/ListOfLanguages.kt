@@ -1,9 +1,11 @@
 package com.example.projectwork.network
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class ListOfLanguages (
-    @Json(name = "1") val count: Long,
-    @Json(name = "2") val languages: String,
-    @Json(name = "3") val wordsCount: String
+    val count: Long,
+    val languages: String,
+    @Json(name = "countWords")val wordsCount: Long
 )
