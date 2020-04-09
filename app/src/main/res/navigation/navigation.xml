@@ -114,7 +114,7 @@
     </fragment>
     <fragment
         android:id="@+id/appSettingsFragment"
-        android:name="com.example.projectwork.dictionary.AppSettingsFragment"
+        android:name="com.example.projectwork.settings.AppSettingsFragment"
         android:label="AppSettingsFragment" >
         <action
             android:id="@+id/action_appSettingsFragment_to_menuFragment"

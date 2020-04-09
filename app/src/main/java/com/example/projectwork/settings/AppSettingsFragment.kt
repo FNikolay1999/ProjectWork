@@ -1,4 +1,4 @@
-package com.example.projectwork.dictionary
+package com.example.projectwork.settings
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -7,25 +7,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
-import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.projectwork.App
 
 import com.example.projectwork.R
 import com.example.projectwork.base_list.ListAdapter
-import com.example.projectwork.settings.AppSettingsAdapter
-import com.example.projectwork.settings.AppSettingsViewModel
-import com.example.projectwork.settings.LanguageData
 import kotlinx.android.synthetic.main.app_settings_fragment.*
 
 class AppSettingsFragment : Fragment() {
 
     companion object {
-        fun newInstance() = DictionaryFragment()
+        fun newInstance() = AppSettingsFragment()
     }
 
-    var myApp = App()
+    var myApp = requireActivity().application as App
 
     private lateinit var viewModel: AppSettingsViewModel
     private val adapter : ListAdapter<LanguageData> = AppSettingsAdapter{
