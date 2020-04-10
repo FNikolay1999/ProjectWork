@@ -1,7 +1,9 @@
 package com.example.projectwork
 
 import android.app.Application
+import com.example.projectwork.database.PolyglotData
 import com.example.projectwork.database.PolyglotDatabase
+import com.example.projectwork.database.PolyglotDatabaseDao
 import com.example.projectwork.network.PolyglotService
 import com.example.projectwork.settings.LanguageData
 import kotlinx.coroutines.coroutineScope
@@ -37,6 +39,13 @@ class App : Application() {
         var listResult = remoteService.getListOfLanguages()
         allLanguages = listOf(LanguageData(1, listResult!!.languages, listResult!!.wordsCount))
     }
+
+//    suspend fun inserts(begin: Long, finish: Long) {
+//        val base : PolyglotDatabaseDao = database.polyglotDatabaseDao
+//        for (i in begin..finish) {
+//            base.insert(PolyglotData(0, currentLanguage, i, "not_studied_yet", false))
+//        }
+//    }
 
     override fun onCreate() {
         super.onCreate()

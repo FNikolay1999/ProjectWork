@@ -26,10 +26,10 @@ import androidx.room.Update
 interface PolyglotDatabaseDao {
 
     @Insert
-    fun insert(word: PolyglotData)
+    suspend fun insert(word: PolyglotData)
 
     @Update
-    fun update(word: PolyglotData)
+    suspend fun update(word: PolyglotData)
 
     @Query("SELECT * FROM studied_words WHERE uniqueId = :uniqueId")
     suspend fun getWord(uniqueId : Long) : PolyglotData
@@ -51,4 +51,7 @@ interface PolyglotDatabaseDao {
 
     @Query("SELECT COUNT(DISTINCT language_id) FROM studied_words")
     fun getLangCount(): Int
+
+    @Query("SELECT COUNT(*) FROM studied_words WHERE language_id = :langKey")
+    fun countWords(langKey: Long): Int
 }

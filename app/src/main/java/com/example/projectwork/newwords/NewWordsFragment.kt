@@ -44,10 +44,13 @@ class NewWordsFragment : Fragment() {
             newWordsViewModel = viewModel
             binding.lifecycleOwner = lifecycleOwner
 
-            //bindImage(wordImage, newWordsViewModel.intWord?.imgSrcUrl)
-
+            bindImage(wordImage, newWordsViewModel!!.intWord?.imgSrcUrl)
+//            newWordsViewModel.intWord?.let { bindImage(wordImage, it?.imgSrcUrl) }
 
             leftTool.setOnClickListener { view?.let { findNavController().navigate(R.id.action_newWordsFragment_to_menuFragment) } }
+            rightTool.setOnClickListener {
+                viewModel.nextWord()
+            }
         }
 
         requireActivity().onBackPressedDispatcher.addCallback(this) {

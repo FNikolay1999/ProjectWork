@@ -62,7 +62,7 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/newWords" />
-            <!--                android:visibility="@{menuViewModel.oldWordsButtonVisible ? View.VISIBLE : View.GONE}"/>-->
+<!--                android:visibility="@{menuViewModel.oldWordsButtonVisible ? View.VISIBLE : View.GONE}"/>-->
 
             <Button
                 android:id="@+id/stats"
