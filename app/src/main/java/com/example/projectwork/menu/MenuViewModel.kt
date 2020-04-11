@@ -31,26 +31,37 @@ class MenuViewModel(app : Application) : AndroidViewModel(app) {
     private lateinit var notOkWords: LiveData<List<PolyglotData>>
     var oldWordsButtonVisible = MutableLiveData<Boolean?>(true)
     var newWordsButtonVisible = MutableLiveData<Boolean?>(true)
-
+    var insertsCount = MutableLiveData(PolyglotData(0, 1, 1, "not_studied_yet", false))
 
     init {
         startLangs()
     }
 
     suspend fun inserts(begin: Long, finish: Long) {
+//        insertsCount.postValue(begin.toInt())
         for (i in begin..finish) {
             database.insert(PolyglotData(0, myApp.currentLanguage, i, "not_studied_yet", false))
+//            insertsCount.postValue(insertsCount.value?.plus(1))
         }
+    }
+
+    suspend fun changeCount() {
+        insertsCount.postValue(database.getFirstWord(myApp.currentLanguage))
+//        insertsCount.postValue(t)
     }
 
     private fun startLangs() {
 
         coroutineScope.launch(Dispatchers.IO) {
             val listResult = remoteService.getListOfLanguages()
-
+//            changeCount()
 //            if (listResult != null) {
 //                myApp.allLanguages = listOf(LanguageData(1, listResult.languages, listResult.wordsCount))
 //            }
+//            insertsCount.postValue(listResult?.wordsCount?.toInt())
+//            insertsCount.postValue(-1)
+            changeCount()
+//            insertsCount.postValue(0)
 
             if (listResult!!.wordsCount > database.countWords(myApp.currentLanguage)) {
                 val begin = (database.countWords(myApp.currentLanguage) + 1).toLong()
@@ -64,12 +75,12 @@ class MenuViewModel(app : Application) : AndroidViewModel(app) {
             val old = Transformations.map(okWords) {
                 it?.isNotEmpty()
             }
-            oldWordsButtonVisible.value = old.value
+            oldWordsButtonVisible.postValue(old.value)
 
             val new = Transformations.map(notOkWords) {
                 it?.isNotEmpty()
             }
-            newWordsButtonVisible.value = new.value
+            newWordsButtonVisible.postValue(new.value)
         }
     }
 

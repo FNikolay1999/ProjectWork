@@ -37,8 +37,8 @@ interface PolyglotDatabaseDao {
     @Query("SELECT * FROM studied_words WHERE language_id = :langKey AND word_id = :wordKey")
     fun getWord(langKey: Long, wordKey: Long): PolyglotData?
 
-    @Query("SELECT * FROM studied_words WHERE language_id = :langKey AND is_studied = 1 ORDER BY word_id ASC LIMIT 1")
-    fun getFirstWord(langKey: Long): PolyglotData?
+    @Query("SELECT * FROM studied_words WHERE language_id = :langKey AND is_studied = 0 ORDER BY word_id ASC LIMIT 1")
+    suspend fun getFirstWord(langKey: Long): PolyglotData?
 
     @Query("SELECT * FROM studied_words WHERE language_id = :langKey")
     fun getWords(langKey: Long): LiveData<List<PolyglotData>>
@@ -53,5 +53,5 @@ interface PolyglotDatabaseDao {
     fun getLangCount(): Int
 
     @Query("SELECT COUNT(*) FROM studied_words WHERE language_id = :langKey")
-    fun countWords(langKey: Long): Int
+    suspend fun countWords(langKey: Long): Int
 }
