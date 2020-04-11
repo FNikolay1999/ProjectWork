@@ -7,6 +7,7 @@
         <variable
             name="menuViewModel"
             type="com.example.projectwork.menu.MenuViewModel" />
+        <import type="android.view.View"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,10 +22,13 @@
             android:id="@+id/mainScreen"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+			android:background = "#cfdaec"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
 
             <ImageView
                 android:id="@+id/userPhoto"
@@ -37,49 +41,55 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@tools:sample/avatars" />
 
+            <!--                android:visibility="@{menuViewModel.newWordsButtonVisible ? View.VISIBLE : View.GONE}"/>-->
+
             <Button
                 android:id="@+id/newWords"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="64dp"
                 android:text="Новые слова"
+				android:backgroundTint = "#759cd8"
                 app:layout_constraintBottom_toTopOf="@+id/oldWords"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/oldWords"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/oldWords"
                 app:layout_constraintTop_toBottomOf="@+id/userPhoto" />
 
             <Button
                 android:id="@+id/oldWords"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="64dp"
                 android:text="Проверить изученные"
+				android:backgroundTint = "#759cd8"
                 app:layout_constraintBottom_toTopOf="@+id/stats"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/newWords"
-                android:enabled="@{menuViewModel.oldWordsButtonVisible}"/>
+                app:layout_constraintTop_toBottomOf="@+id/newWords" />
+            <!--                android:visibility="@{menuViewModel.oldWordsButtonVisible ? View.VISIBLE : View.GONE}"/>-->
 
             <Button
                 android:id="@+id/stats"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="64dp"
                 android:text="Статистика"
+				android:backgroundTint = "#759cd8"
                 app:layout_constraintBottom_toTopOf="@+id/settings"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/oldWords"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/oldWords"
                 app:layout_constraintTop_toBottomOf="@+id/oldWords" />
 
             <Button
                 android:id="@+id/settings"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="64dp"
                 android:text="Настройки"
+				android:backgroundTint = "#759cd8"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/oldWords"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/oldWords"
                 app:layout_constraintTop_toBottomOf="@+id/stats" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
