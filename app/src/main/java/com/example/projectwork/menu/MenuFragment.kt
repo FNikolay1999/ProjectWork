@@ -62,9 +62,9 @@ class MenuFragment : Fragment() {
         viewModel.word.observe(viewLifecycleOwner){
             Log.d("Menu", "Word = $it")
         }
-        viewModel.insertsCount.observe(viewLifecycleOwner) {
-            Log.d("Menu", "inserts = $it")
-        }
+//        viewModel.insertsCount.observe(viewLifecycleOwner) {
+//            Log.d("Menu", "inserts = $it")
+//        }
 
         requireActivity().onBackPressedDispatcher.addCallback(this) {
             view?.let { //findNavController().navigate(R.id.action_menuFragment_to_exitScreenFragment)

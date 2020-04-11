@@ -54,4 +54,7 @@ interface PolyglotDatabaseDao {
 
     @Query("SELECT COUNT(*) FROM studied_words WHERE language_id = :langKey")
     suspend fun countWords(langKey: Long): Int
+
+    @Query("SELECT COUNT(*) FROM studied_words WHERE language_id = :langKey AND is_studied = 1")
+    suspend fun countStudiedWords(langKey: Long): Int
 }

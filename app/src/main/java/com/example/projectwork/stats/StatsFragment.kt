@@ -1,12 +1,14 @@
 package com.example.projectwork.stats
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.example.projectwork.R
 import com.example.projectwork.databinding.MenuFragmentBinding
@@ -37,6 +39,20 @@ class StatsFragment : Fragment() {
         binding.apply {
             statsViewModel = viewModel
             binding.lifecycleOwner = lifecycleOwner
+
+
+            viewModel.studiedWordsAmountString.observe(viewLifecycleOwner) {
+                statsViewModel = viewModel
+                Log.d("Stats", "studied = $it")
+            }
+            viewModel.wordsAmountString.observe(viewLifecycleOwner) {
+                statsViewModel = viewModel
+                Log.d("Stats", "all = $it")
+            }
+            viewModel.wordsLeftString.observe(viewLifecycleOwner) {
+                statsViewModel = viewModel
+                Log.d("Stats", "notStudied = $it")
+            }
         }
 
         requireActivity().onBackPressedDispatcher.addCallback(this) {

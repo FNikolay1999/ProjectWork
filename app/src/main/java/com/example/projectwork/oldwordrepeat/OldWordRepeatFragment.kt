@@ -9,10 +9,12 @@ import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 
 import com.example.projectwork.R
 import com.example.projectwork.databinding.OldWordRepeatFragmentBinding
+import com.example.projectwork.network.bindImage
 
 class OldWordRepeatFragment : Fragment() {
 
@@ -41,6 +43,14 @@ class OldWordRepeatFragment : Fragment() {
             //также передаем lifecycleOwner, потому что, чтобы у тебя данные сами обновлялись, а не один раз и все, то liveDat'е нужен lifecycleOwner
             //лучше не забывай его передавать, если у тебя во viewModel liveData, потому что этот баг искать долго
             binding.lifecycleOwner = viewLifecycleOwner
+
+            bindImage(wordImage, oldWordRepeatViewModel!!.intWord?.value?.imgSrcUrl)
+
+
+            viewModel.intWord.observe(viewLifecycleOwner) {
+                oldWordRepeatViewModel = viewModel
+                bindImage(wordImage, oldWordRepeatViewModel!!.intWord?.value?.imgSrcUrl)
+            }
         }
 
         requireActivity().onBackPressedDispatcher.addCallback(this) {

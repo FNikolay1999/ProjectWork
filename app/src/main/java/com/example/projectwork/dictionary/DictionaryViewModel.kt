@@ -20,8 +20,9 @@ class DictionaryViewModel(application: Application) : AndroidViewModel(applicati
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     private val stub : LiveData<List<PolyglotData>> = liveData {
-        emit(listOf(PolyglotData(1, originalWord = "word1"), PolyglotData(2, originalWord = "word2")))
+        emit(listOf(PolyglotData(1, originalWord = "wait")))
     }
+    var okWords = stub
 
     init {
         fillDictionary()
@@ -29,10 +30,8 @@ class DictionaryViewModel(application: Application) : AndroidViewModel(applicati
 
     private fun fillDictionary() {
         coroutineScope.launch(Dispatchers.IO) {
-
+            okWords = database.getWords(myApp.currentLanguage)
         }
     }
-
-    val okWords = stub//database.getStudiedWords(myApp.currentLanguage)
 
 }

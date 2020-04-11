@@ -21,8 +21,8 @@ class NewWordsViewModel(app : Application) : AndroidViewModel(app) {
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main )
 
 
-    var intWord: MutableLiveData<SingleWord?> = MutableLiveData(SingleWord(0, "Wait", "Wait", "Wait", "http://mmcspolyglot.mcdir.ru/images/fly.jpg"))
-    var word: MutableLiveData<PolyglotData?> = MutableLiveData(null)
+    var intWord: MutableLiveData<SingleWord?> = MutableLiveData(SingleWord(0, "Wait", "Wait", "Wait", "http://mmcspolyglot.mcdir.ru/images/default_picture.jpg"))
+    var word: MutableLiveData<PolyglotData?> = MutableLiveData(PolyglotData(0, 1, 1, "wait", false))
 
     init {
         startingWork()
@@ -50,11 +50,18 @@ class NewWordsViewModel(app : Application) : AndroidViewModel(app) {
         }
     }
 
+    fun splittingWord() = buildString {
+        for (line in intWord.value?.translation?.split(';')!!)
+            append(line + "\n")
+    }
+
     fun nextWord() {
         coroutineScope.launch(Dispatchers.IO) {
             word?.value?.originalWord = intWord?.value?.originWord ?: "unknown"
             word?.value?.isStudied = true
             word?.let { database.update(it.value!!) }
+            delay(500)
+
 
             getOneWord()
             delay(500)
@@ -68,4 +75,8 @@ class NewWordsViewModel(app : Application) : AndroidViewModel(app) {
         }
     }
 
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
+    }
 }

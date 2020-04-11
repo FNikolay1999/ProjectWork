@@ -3,11 +3,14 @@ package com.example.projectwork.settings
 import android.app.Application
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
+import androidx.lifecycle.liveData
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.projectwork.App
@@ -55,13 +58,19 @@ class AppSettingsFragment : Fragment() {
 
         //val linDict = LinearLayout(this!)
         //подписываемся на лайвдату и при обновлении она будет обновлять список
-//        viewModel.languages.observe(viewLifecycleOwner){
-//            adapter.setList(it)
-//        }
+        viewModel.languages.observe(viewLifecycleOwner){
+            adapter.setList(it)
+            Log.d("Settings", "languages = $it")
+        }
+        viewModel.listResult.observe(viewLifecycleOwner) {
+            Log.d("Settings", "listResults = $it")
+            viewModel.changeLangs()
+        }
 
         myApp = requireActivity().application as App
 
-        adapter.setList(myApp.allLanguages)
+//        adapter.setList(myApp.allLanguages)
+
 
         requireActivity().onBackPressedDispatcher.addCallback(this) {
             view?.let { findNavController().navigate(R.id.action_appSettingsFragment_to_menuFragment) }

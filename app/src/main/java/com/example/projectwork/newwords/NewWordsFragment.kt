@@ -61,6 +61,11 @@ class NewWordsFragment : Fragment() {
 
                 bindImage(wordImage, newWordsViewModel!!.intWord?.value?.imgSrcUrl)
             }
+
+            viewModel.word.observe(viewLifecycleOwner) {
+                if (viewModel.word.value == null)
+                    view?.let { findNavController().navigate(R.id.action_newWordsFragment_to_menuFragment) }
+            }
         }
 
         viewModel.intWord.observe(viewLifecycleOwner){

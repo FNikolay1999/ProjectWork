@@ -31,7 +31,7 @@ class MenuViewModel(app : Application) : AndroidViewModel(app) {
     private lateinit var notOkWords: LiveData<List<PolyglotData>>
     var oldWordsButtonVisible = MutableLiveData<Boolean?>(true)
     var newWordsButtonVisible = MutableLiveData<Boolean?>(true)
-    var insertsCount = MutableLiveData(PolyglotData(0, 1, 1, "not_studied_yet", false))
+//    var insertsCount = MutableLiveData(PolyglotData(0, 1, 1, "not_studied_yet", false))
 
     init {
         startLangs()
@@ -45,10 +45,6 @@ class MenuViewModel(app : Application) : AndroidViewModel(app) {
         }
     }
 
-    suspend fun changeCount() {
-        insertsCount.postValue(database.getFirstWord(myApp.currentLanguage))
-//        insertsCount.postValue(t)
-    }
 
     private fun startLangs() {
 
@@ -60,7 +56,7 @@ class MenuViewModel(app : Application) : AndroidViewModel(app) {
 //            }
 //            insertsCount.postValue(listResult?.wordsCount?.toInt())
 //            insertsCount.postValue(-1)
-            changeCount()
+//            changeCount()
 //            insertsCount.postValue(0)
 
             if (listResult!!.wordsCount > database.countWords(myApp.currentLanguage)) {

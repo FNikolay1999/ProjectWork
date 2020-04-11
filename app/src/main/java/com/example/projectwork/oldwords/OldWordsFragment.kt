@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.example.projectwork.R
 import com.example.projectwork.databinding.OldWordsFragmentBinding
@@ -42,9 +43,17 @@ class OldWordsFragment : Fragment() {
             oldWordsViewModel = viewModel
             binding.lifecycleOwner = lifecycleOwner
             checkButton.setOnClickListener {
-                val answer = answer_text.text.toString().toLowerCase(Locale.ROOT).toRegex()
+                val answer = answer_text.text.toString().toLowerCase(Locale.ROOT)
+                viewModel.nextWord(answer)
+            }
 
+            viewModel.intWord.observe(viewLifecycleOwner) {
+                oldWordsViewModel = viewModel
 
+            }
+            viewModel.word.observe(viewLifecycleOwner) {
+                if (viewModel.word.value == null)
+                    view?.let { findNavController().navigate(R.id.action_newWordsFragment_to_menuFragment) }
             }
         }
 
